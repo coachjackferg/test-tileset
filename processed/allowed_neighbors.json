@@ -1,0 +1,1650 @@
+{
+  "groups": {
+    "grass": {
+      "neighbors": {
+        "north": [
+          "#grass",
+          "dirt_cap_south",
+          "dirt_cap_south_west",
+          "dirt_cap_south_east"
+        ],
+        "east": [
+          "#grass",
+          "dirt_cap_west",
+          "dirt_cap_south_west",
+          "dirt_cap_north_west"
+        ],
+        "south": [
+          "#grass",
+          "dirt_cap_north",
+          "dirt_cap_north_west",
+          "dirt_cap_north_east"
+        ],
+        "west": [
+          "#grass",
+          "dirt_cap_east",
+          "dirt_cap_south_east",
+          "dirt_cap_north_east"
+        ]
+      }
+    },
+    "fence_horizontal": {
+      "neighbors": {
+        "east": [
+          "#fence_horizontal",
+          "fence_cap_east",
+          "fence_cap_north_east",
+          "fence_cap_south_east"
+        ],
+        "west": [
+          "#fence_horizontal",
+          "fence_cap_west",
+          "fence_cap_north_west",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_vertical": {
+      "neighbors": {
+        "north": [
+          "#fence_vertical",
+          "fence_cap_north",
+          "fence_cap_north_east",
+          "fence_cap_north_west"
+        ],
+        "south": [
+          "#fence_vertical",
+          "fence_cap_south",
+          "fence_cap_south_east",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "orange_roof_cap_north": {
+      "neighbors": {
+        "south": [
+          "#orange_roof_cap_south"
+        ]
+      }
+    },
+    "orange_roof_cap_south": {
+      "neighbors": {
+        "north": [
+          "#orange_roof_cap_north"
+        ]
+      }
+    },
+    "roof_cap_south": {
+      "neighbors": {
+        "south": [
+          "#wall"
+        ]
+      }
+    },
+    "wall": {
+      "neighbors": {
+        "north": [
+          "#roof_cap_south"
+        ]
+      }
+    },
+    "stone_wall_horizontal": {
+      "neighbors": {
+        "east": [
+          "#stone_wall_horizontal",
+          "stone_wall_cap_east",
+          "stone_wall_double_door_east"
+        ],
+        "west": [
+          "#stone_wall_horizontal",
+          "stone_wall_cap_west",
+          "stone_wall_double_door_west"
+        ]
+      }
+    },
+    "slate_roof_north": {
+      "neighbors": {
+        "south": [
+          "#slate_roof_south"
+        ]
+      }
+    },
+    "slate_roof_south": {
+      "neighbors": {
+        "north": [
+          "#slate_roof_north"
+        ]
+      }
+    }
+  },
+  "tiles": {
+    "dirt": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt",
+          "dirt_cap_north",
+          "dirt_junction_north_and_east",
+          "dirt_junction_north_and_west"
+        ],
+        "east": [
+          "dirt",
+          "dirt_cap_east",
+          "dirt_junction_north_and_east",
+          "dirt_junction_south_and_east"
+        ],
+        "south": [
+          "dirt",
+          "dirt_cap_south",
+          "dirt_junction_south_and_east",
+          "dirt_junction_south_and_west"
+        ],
+        "west": [
+          "dirt",
+          "dirt_cap_west",
+          "dirt_junction_south_and_west",
+          "dirt_junction_north_and_west"
+        ]
+      }
+    },
+    "dirt_cap_north": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#grass",
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_cap_south_west"
+        ],
+        "east": [
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_junction_north_and_west"
+        ],
+        "south": [
+          "dirt",
+          "dirt_cap_south",
+          "dirt_junction_south_and_east",
+          "dirt_junction_south_and_west"
+        ],
+        "west": [
+          "dirt_cap_north",
+          "dirt_cap_north_west",
+          "dirt_junction_north_and_east"
+        ]
+      }
+    },
+    "dirt_cap_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_junction_south_and_east"
+        ],
+        "east": [
+          "#grass",
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_cap_south_west"
+        ],
+        "south": [
+          "dirt_cap_east",
+          "dirt_cap_south_east",
+          "dirt_junction_north_and_east"
+        ],
+        "west": [
+          "dirt",
+          "dirt_cap_west",
+          "dirt_junction_north_and_west",
+          "dirt_junction_south_and_west"
+        ]
+      }
+    },
+    "dirt_cap_south": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt",
+          "dirt_cap_north",
+          "dirt_junction_north_and_east",
+          "dirt_junction_north_and_west"
+        ],
+        "east": [
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_junction_south_and_west"
+        ],
+        "south": [
+          "#grass",
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_cap_north_west"
+        ],
+        "west": [
+          "dirt_cap_south",
+          "dirt_cap_south_west",
+          "dirt_junction_south_and_east"
+        ]
+      }
+    },
+    "dirt_cap_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_junction_south_and_west"
+        ],
+        "east": [
+          "dirt",
+          "dirt_cap_east",
+          "dirt_junction_north_and_east",
+          "dirt_junction_south_and_east"
+        ],
+        "south": [
+          "dirt_cap_west",
+          "dirt_cap_south_west",
+          "dirt_junction_north_and_west"
+        ],
+        "west": [
+          "#grass",
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_cap_south_east"
+        ]
+      }
+    },
+    "dirt_cap_north_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#grass",
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_cap_south_west"
+        ],
+        "east": [
+          "#grass",
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_cap_south_west"
+        ],
+        "south": [
+          "dirt_cap_east",
+          "dirt_cap_south_east",
+          "dirt_junction_north_and_east"
+        ],
+        "west": [
+          "dirt_cap_north",
+          "dirt_cap_north_west",
+          "dirt_junction_north_and_east"
+        ]
+      }
+    },
+    "dirt_cap_south_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_junction_south_and_east"
+        ],
+        "east": [
+          "#grass",
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_cap_south_west"
+        ],
+        "south": [
+          "#grass",
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_cap_north_west"
+        ],
+        "west": [
+          "dirt_cap_south",
+          "dirt_cap_south_west",
+          "dirt_junction_south_and_east"
+        ]
+      }
+    },
+    "dirt_cap_south_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_junction_south_and_west"
+        ],
+        "east": [
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_junction_south_and_west"
+        ],
+        "south": [
+          "#grass",
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_cap_north_west"
+        ],
+        "west": [
+          "#grass",
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_cap_south_east"
+        ]
+      }
+    },
+    "dirt_cap_north_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#grass",
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_cap_south_west"
+        ],
+        "east": [
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_junction_north_and_west"
+        ],
+        "south": [
+          "dirt_cap_west",
+          "dirt_cap_south_west",
+          "dirt_junction_north_and_west"
+        ],
+        "west": [
+          "#grass",
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_cap_south_east"
+        ]
+      }
+    },
+    "dirt_junction_north_and_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_east",
+          "dirt_cap_north_east",
+          "dirt_junction_south_and_east"
+        ],
+        "east": [
+          "dirt_cap_north",
+          "dirt_cap_north_east",
+          "dirt_junction_north_and_west"
+        ],
+        "south": [
+          "dirt",
+          "dirt_cap_south",
+          "dirt_junction_south_and_east",
+          "dirt_junction_south_and_west"
+        ],
+        "west": [
+          "dirt",
+          "dirt_cap_west",
+          "dirt_junction_south_and_west",
+          "dirt_junction_north_and_west"
+        ]
+      }
+    },
+    "dirt_junction_south_and_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt",
+          "dirt_cap_north",
+          "dirt_junction_north_and_east",
+          "dirt_junction_north_and_west"
+        ],
+        "east": [
+          "dirt_cap_south",
+          "dirt_cap_south_east",
+          "dirt_junction_south_and_west"
+        ],
+        "south": [
+          "dirt_cap_east",
+          "dirt_cap_south_east",
+          "dirt_junction_north_and_east"
+        ],
+        "west": [
+          "dirt",
+          "dirt_cap_west",
+          "dirt_junction_south_and_west",
+          "dirt_junction_north_and_west"
+        ]
+      }
+    },
+    "dirt_junction_south_and_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt",
+          "dirt_cap_north",
+          "dirt_junction_north_and_east",
+          "dirt_junction_north_and_west"
+        ],
+        "east": [
+          "dirt",
+          "dirt_cap_east",
+          "dirt_junction_north_and_east",
+          "dirt_junction_south_and_east"
+        ],
+        "south": [
+          "dirt_cap_west",
+          "dirt_cap_south_west",
+          "dirt_junction_north_and_west"
+        ],
+        "west": [
+          "dirt_cap_south",
+          "dirt_cap_south_west",
+          "dirt_junction_south_and_east"
+        ]
+      }
+    },
+    "dirt_junction_north_and_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "dirt_cap_west",
+          "dirt_cap_north_west",
+          "dirt_junction_south_and_west"
+        ],
+        "east": [
+          "dirt",
+          "dirt_cap_east",
+          "dirt_junction_north_and_east",
+          "dirt_junction_south_and_east"
+        ],
+        "south": [
+          "dirt",
+          "dirt_cap_south",
+          "dirt_junction_south_and_east",
+          "dirt_junction_south_and_west"
+        ],
+        "west": [
+          "dirt_cap_north",
+          "dirt_cap_north_west",
+          "dirt_junction_north_and_east"
+        ]
+      }
+    },
+    "grass": {
+      "tags": [
+        "#grass"
+      ]
+    },
+    "grass_with_flowers": {
+      "tags": [
+        "#grass"
+      ]
+    },
+    "grass_with_plants": {
+      "tags": [
+        "#grass"
+      ]
+    },
+    "grass_with_stones": {
+      "tags": [
+        "#grass"
+      ]
+    },
+    "tall_green_tree_bottom": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "tall_green_tree_top"
+        ]
+      }
+    },
+    "tall_green_tree_top": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "tall_green_tree_bottom"
+        ]
+      }
+    },
+    "green_tree_bunch": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_north",
+          "green_tree_bunch_cap_north_west",
+          "green_tree_bunch_cap_north_east"
+        ],
+        "east": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_east",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_south_east"
+        ],
+        "south": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_south",
+          "green_tree_bunch_cap_south_east",
+          "green_tree_bunch_cap_south_west"
+        ],
+        "west": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_west",
+          "green_tree_bunch_cap_north_west",
+          "green_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_north": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_south",
+          "green_tree_bunch_cap_south_west",
+          "green_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_north_east": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_south",
+          "green_tree_bunch_cap_south_east",
+          "green_tree_bunch_cap_south_west"
+        ],
+        "west": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_west",
+          "green_tree_bunch_cap_north_west",
+          "green_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_west",
+          "green_tree_bunch_cap_north_west",
+          "green_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_south_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_north",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_north_west"
+        ],
+        "west": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_west",
+          "green_tree_bunch_cap_north_west",
+          "green_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_south": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_north",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_north_west"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_south_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_north",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_north_west"
+        ],
+        "east": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_east",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_east",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "green_tree_bunch_cap_north_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_east",
+          "green_tree_bunch_cap_north_east",
+          "green_tree_bunch_cap_south_east"
+        ],
+        "south": [
+          "green_tree_bunch",
+          "green_tree_bunch_cap_south",
+          "green_tree_bunch_cap_south_west",
+          "green_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "tall_orange_tree_bottom": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "tall_orange_tree_top"
+        ]
+      }
+    },
+    "tall_orange_tree_top": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "tall_orange_tree_bottom"
+        ]
+      }
+    },
+    "orange_tree_bunch": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_north",
+          "orange_tree_bunch_cap_north_west",
+          "orange_tree_bunch_cap_north_east"
+        ],
+        "east": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_east",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_south_east"
+        ],
+        "south": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_south",
+          "orange_tree_bunch_cap_south_east",
+          "orange_tree_bunch_cap_south_west"
+        ],
+        "west": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_west",
+          "orange_tree_bunch_cap_north_west",
+          "orange_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_north": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_south",
+          "orange_tree_bunch_cap_south_west",
+          "orange_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_north_east": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_south",
+          "orange_tree_bunch_cap_south_east",
+          "orange_tree_bunch_cap_south_west"
+        ],
+        "west": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_west",
+          "orange_tree_bunch_cap_north_west",
+          "orange_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_west",
+          "orange_tree_bunch_cap_north_west",
+          "orange_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_south_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_north",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_north_west"
+        ],
+        "west": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_west",
+          "orange_tree_bunch_cap_north_west",
+          "orange_tree_bunch_cap_south_west"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_south": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_north",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_north_west"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_south_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_north",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_north_west"
+        ],
+        "east": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_east",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_east",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "orange_tree_bunch_cap_north_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_east",
+          "orange_tree_bunch_cap_north_east",
+          "orange_tree_bunch_cap_south_east"
+        ],
+        "south": [
+          "orange_tree_bunch",
+          "orange_tree_bunch_cap_south",
+          "orange_tree_bunch_cap_south_west",
+          "orange_tree_bunch_cap_south_east"
+        ]
+      }
+    },
+    "fence_horizontal": {
+      "tags": [
+        "#fence_horizontal"
+      ]
+    },
+    "fence_slat_horizontal": {
+      "tags": [
+        "#fence_horizontal"
+      ]
+    },
+    "fence_cap_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "#fence_horizontal",
+          "fence_cap_west",
+          "fence_cap_north_west",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_cap_north_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "#fence_horizontal",
+          "fence_cap_west",
+          "fence_cap_north_west",
+          "fence_cap_south_west"
+        ],
+        "south": [
+          "#fence_vertical",
+          "fence_cap_south",
+          "fence_cap_south_east",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_cap_north": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "#fence_vertical",
+          "fence_cap_south",
+          "fence_cap_south_east",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_cap_north_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "#fence_horizontal",
+          "fence_cap_east",
+          "fence_cap_north_east",
+          "fence_cap_south_east"
+        ],
+        "south": [
+          "#fence_vertical",
+          "fence_cap_south",
+          "fence_cap_south_east",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_cap_south_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#fence_vertical",
+          "fence_cap_north",
+          "fence_cap_north_east",
+          "fence_cap_north_west"
+        ],
+        "west": [
+          "#fence_horizontal",
+          "fence_cap_west",
+          "fence_cap_north_west",
+          "fence_cap_south_west"
+        ]
+      }
+    },
+    "fence_cap_south_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#fence_vertical",
+          "fence_cap_north",
+          "fence_cap_north_east",
+          "fence_cap_north_west"
+        ],
+        "east": [
+          "#fence_horizontal",
+          "fence_cap_east",
+          "fence_cap_north_east",
+          "fence_cap_south_east"
+        ]
+      }
+    },
+    "fence_cap_south": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "#fence_vertical",
+          "fence_cap_north",
+          "fence_cap_north_east",
+          "fence_cap_north_west"
+        ]
+      }
+    },
+    "fence_cap_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "#fence_horizontal",
+          "fence_cap_east",
+          "fence_cap_north_east",
+          "fence_cap_south_east"
+        ]
+      }
+    },
+    "fence_gap_horizontal": {
+      "tags": [
+        "#fence_horizontal"
+      ]
+    },
+    "fence_vertical_align_center": {
+      "tags": [
+        "#fence_vertical"
+      ]
+    },
+    "orange_roof_cap_north_west": {
+      "tags": [
+        "#orange_roof_cap_north"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_north",
+          "orange_roof_cap_north_east",
+          "orange_roof_cap_north_chimney"
+        ],
+        "west": [
+          "orange_roof_cap_north_chimney"
+        ]
+      }
+    },
+    "orange_roof_cap_north": {
+      "tags": [
+        "#orange_roof_cap_north"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_north",
+          "orange_roof_cap_north_east",
+          "orange_roof_cap_north_chimney"
+        ],
+        "west": [
+          "orange_roof_cap_north_west",
+          "orange_roof_cap_north",
+          "orange_roof_cap_north_chimney"
+        ]
+      }
+    },
+    "orange_roof_cap_north_east": {
+      "tags": [
+        "#orange_roof_cap_north"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_north_chimney"
+        ],
+        "west": [
+          "orange_roof_cap_north_west",
+          "orange_roof_cap_north",
+          "orange_roof_cap_north_chimney"
+        ]
+      }
+    },
+    "orange_roof_cap_north_chimney": {
+      "tags": [
+        "#orange_roof_cap_north"
+      ],
+      "neighbors": {
+        "east": [
+          "#orange_roof_cap_north"
+        ],
+        "west": [
+          "#orange_roof_cap_north"
+        ]
+      }
+    },
+    "orange_roof_cap_south_west": {
+      "tags": [
+        "#orange_roof_cap_south",
+        "#roof_cap_south"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_south",
+          "orange_roof_cap_south_east",
+          "orange_roof_cap_south_peaked"
+        ],
+        "west": [
+          "orange_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "orange_roof_cap_south": {
+      "tags": [
+        "#orange_roof_cap_south",
+        "#roof_cap_south"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_south",
+          "orange_roof_cap_south_east",
+          "orange_roof_cap_south_peaked"
+        ],
+        "west": [
+          "orange_roof_cap_south_west",
+          "orange_roof_cap_south",
+          "orange_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "orange_roof_cap_south_east": {
+      "tags": [
+        "#orange_roof_cap_south",
+        "#roof_cap_south"
+      ],
+      "neighbors": {
+        "east": [
+          "orange_roof_cap_south_peaked"
+        ],
+        "west": [
+          "orange_roof_cap_south_west",
+          "orange_roof_cap_south",
+          "orange_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "orange_roof_cap_south_peaked": {
+      "tags": [
+        "#orange_roof_cap_south",
+        "#roof_cap_south"
+      ],
+      "neighbors": {
+        "east": [
+          "#orange_roof_cap_south"
+        ],
+        "west": [
+          "#orange_roof_cap_south"
+        ]
+      }
+    },
+    "stone_wall_cap_east": {
+      "tags": [
+        "#wall"
+      ],
+      "neighbors": {
+        "west": [
+          "#stone_wall_horizontal",
+          "stone_wall_double_door_west"
+        ]
+      }
+    },
+    "stone_wall_cap_west": {
+      "tags": [
+        "#wall"
+      ],
+      "neighbors": {
+        "east": [
+          "#stone_wall_horizontal",
+          "stone_wall_double_door_east"
+        ]
+      }
+    },
+    "stone_wall_double_door_east": {
+      "tags": [
+        "#wall"
+      ],
+      "neighbors": {
+        "east": [
+          "stone_wall_double_door_west"
+        ],
+        "west": [
+          "#stone_wall_horizontal",
+          "stone_wall_cap_west"
+        ]
+      }
+    },
+    "stone_wall_double_door_west": {
+      "tags": [
+        "#wall"
+      ],
+      "neighbors": {
+        "east": [
+          "#stone_wall_horizontal",
+          "stone_wall_cap_east"
+        ],
+        "west": [
+          "stone_wall_double_door_east"
+        ]
+      }
+    },
+    "stone_wall_horizontal": {
+      "tags": [
+        "#wall",
+        "#stone_wall_horizontal"
+      ]
+    },
+    "stone_wall_single_door": {
+      "tags": [
+        "#wall",
+        "#stone_wall_horizontal"
+      ]
+    },
+    "stone_wall_window": {
+      "tags": [
+        "#wall",
+        "#stone_wall_horizontal"
+      ]
+    },
+    "bush": {
+      "tags": []
+    },
+    "green_plant": {
+      "tags": []
+    },
+    "small_orange_tree": {
+      "tags": []
+    },
+    "small_green_tree": {
+      "tags": []
+    },
+    "mushroom": {
+      "tags": []
+    },
+    "slate_roof_cap_north_west": {
+      "tags": [
+        "#slate_roof_north"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_north",
+          "slate_roof_window",
+          "slate_roof_cap_north_east"
+        ]
+      }
+    },
+    "slate_roof_cap_north": {
+      "tags": [
+        "#slate_roof_north"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_north",
+          "slate_roof_window",
+          "slate_roof_cap_north_east"
+        ],
+        "west": [
+          "slate_roof_cap_north_west",
+          "slate_roof_cap_north",
+          "slate_roof_window"
+        ]
+      }
+    },
+    "slate_roof_cap_north_east": {
+      "tags": [
+        "#slate_roof_north"
+      ],
+      "neighbors": {
+        "west": [
+          "slate_roof_cap_north_west",
+          "slate_roof_cap_north",
+          "slate_roof_window"
+        ]
+      }
+    },
+    "slate_roof_window": {
+      "tags": [
+        "#slate_roof_north"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_north",
+          "slate_roof_window",
+          "slate_roof_cap_north_east"
+        ],
+        "west": [
+          "slate_roof_cap_north_west",
+          "slate_roof_cap_north",
+          "slate_roof_window"
+        ]
+      }
+    },
+    "fence_vertical_align_east": {
+      "tags": [
+        "#fence_vertical"
+      ]
+    },
+    "wooden_shop_sign": {
+      "tags": []
+    },
+    "fence_vertical_align_west": {
+      "tags": [
+        "#fence_vertical"
+      ]
+    },
+    "slate_roof_cap_south_west": {
+      "tags": [
+        "#slate_roof_south"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked",
+          "slate_roof_cap_south_east"
+        ]
+      }
+    },
+    "slate_roof_cap_south": {
+      "tags": [
+        "#slate_roof_south"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked",
+          "slate_roof_cap_south_east"
+        ],
+        "west": [
+          "slate_roof_cap_south_west",
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "slate_roof_cap_south_east": {
+      "tags": [
+        "#slate_roof_south"
+      ],
+      "neighbors": {
+        "west": [
+          "slate_roof_cap_south_west",
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "slate_roof_cap_south_peaked": {
+      "tags": [
+        "#slate_roof_south"
+      ],
+      "neighbors": {
+        "east": [
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked",
+          "slate_roof_cap_south_east"
+        ],
+        "west": [
+          "slate_roof_cap_south_west",
+          "slate_roof_cap_south",
+          "slate_roof_cap_south_peaked"
+        ]
+      }
+    },
+    "wood_wall_cap_west": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "east": [
+          "wood_wall_horizontal",
+          "wood_wall_single_door",
+          "wood_wall_cap_east"
+        ]
+      }
+    },
+    "wood_wall_horizontal": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "east": [
+          "wood_wall_horizontal",
+          "wood_wall_single_door",
+          "wood_wall_cap_east"
+        ],
+        "west": [
+          "wood_wall_cap_west",
+          "wood_wall_horizontal",
+          "wood_wall_single_door"
+        ]
+      }
+    },
+    "wood_wall_single_door": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "east": [
+          "wood_wall_horizontal",
+          "wood_wall_single_door",
+          "wood_wall_cap_east"
+        ],
+        "west": [
+          "wood_wall_cap_west",
+          "wood_wall_horizontal",
+          "wood_wall_single_door"
+        ]
+      }
+    },
+    "wood_wall_cap_east": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "west": [
+          "wood_wall_cap_west",
+          "wood_wall_horizontal",
+          "wood_wall_single_door"
+        ]
+      }
+    },
+    "stone_roof_cap_south_peaked": {
+      "tags": []
+    },
+    "wooden_signpost": {
+      "tags": []
+    },
+    "wood_wall_window": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "east": [
+          "wood_wall_arched_door",
+          "wood_wall_double_door_west"
+        ]
+      }
+    },
+    "wood_wall_arched_door": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "east": [
+          "wood_wall_arched_door",
+          "wood_wall_double_door_west"
+        ],
+        "west": [
+          "wood_wall_window",
+          "wood_wall_arched_door"
+        ]
+      }
+    },
+    "wood_wall_double_door_west": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "west": [
+          "wood_wall_window",
+          "wood_wall_arched_door"
+        ],
+        "east": [
+          "wood_wall_double_door_east"
+        ]
+      }
+    },
+    "wood_wall_double_door_east": {
+      "tags": [
+        "#wall",
+        "#wood_wall"
+      ],
+      "neighbors": {
+        "west": [
+          "wood_wall_double_door_west"
+        ]
+      }
+    },
+    "orange_roof_peak_accent": {
+      "tags": []
+    },
+    "gold_coin": {
+      "tags": []
+    },
+    "gold_pouch": {
+      "tags": []
+    },
+    "archery_target": {
+      "tags": []
+    },
+    "castle_top_cap_north_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_top_cap_north",
+          "castle_top_cap_north_east"
+        ]
+      }
+    },
+    "castle_top_cap_north": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_top_cap_north",
+          "castle_top_cap_north_east"
+        ],
+        "west": [
+          "castle_top_cap_north_west",
+          "castle_top_cap_north"
+        ]
+      }
+    },
+    "castle_top_cap_north_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "castle_top_cap_north_west",
+          "castle_top_cap_north"
+        ]
+      }
+    },
+    "castle_battlement_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_battlement_center",
+          "castle_battlement_east"
+        ]
+      }
+    },
+    "castle_battlement_center": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_battlement_center",
+          "castle_battlement_east"
+        ],
+        "west": [
+          "castle_battlement_west",
+          "castle_battlement_center"
+        ]
+      }
+    },
+    "castle_battlement_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "castle_battlement_west",
+          "castle_battlement_center"
+        ]
+      }
+    },
+    "castle_ladder": {
+      "tags": []
+    },
+    "wooden_crate": {
+      "tags": []
+    },
+    "stone_well": {
+      "tags": []
+    },
+    "blacksmith_hammer": {
+      "tags": []
+    },
+    "cut_logs": {
+      "tags": []
+    },
+    "wooden_barrel": {
+      "tags": []
+    },
+    "castle_wall_cap_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_wall_center",
+          "castle_wall_cap_east"
+        ]
+      }
+    },
+    "castle_wall_center": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_wall_center",
+          "castle_wall_cap_east"
+        ],
+        "west": [
+          "castle_wall_cap_west",
+          "castle_wall_center"
+        ]
+      }
+    },
+    "castle_wall_cap_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "castle_wall_cap_west",
+          "castle_wall_center"
+        ]
+      }
+    },
+    "castle_arch_top_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_arch_top_east"
+        ],
+        "south": [
+          "castle_arch_bottom_west"
+        ]
+      }
+    },
+    "castle_arch_top_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "castle_arch_top_west"
+        ],
+        "south": [
+          "castle_arch_bottom_east"
+        ]
+      }
+    },
+    "castle_arch_bottom_west": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "castle_arch_top_west"
+        ],
+        "east": [
+          "castle_arch_bottom_east"
+        ]
+      }
+    },
+    "castle_arch_bottom_east": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "castle_arch_top_east"
+        ],
+        "west": [
+          "castle_arch_bottom_west"
+        ]
+      }
+    },
+    "wooden_direction_sign": {
+      "tags": []
+    },
+    "pitchfork": {
+      "tags": []
+    },
+    "key": {
+      "tags": []
+    },
+    "bow": {
+      "tags": []
+    },
+    "sword": {
+      "tags": []
+    },
+    "castle_base_cap_south_west": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_base_cap_south",
+          "castle_base_cap_south_east"
+        ]
+      }
+    },
+    "castle_base_cap_south": {
+      "tags": [],
+      "neighbors": {
+        "east": [
+          "castle_base_cap_south",
+          "castle_base_cap_south_east"
+        ],
+        "west": [
+          "castle_base_cap_south_west",
+          "castle_base_cap_south"
+        ]
+      }
+    },
+    "castle_base_cap_south_east": {
+      "tags": [],
+      "neighbors": {
+        "west": [
+          "castle_base_cap_south_west",
+          "castle_base_cap_south"
+        ]
+      }
+    },
+    "hanging_chain": {
+      "tags": [],
+      "neighbors": {
+        "south": [
+          "hanging_chain",
+          "hanging_chain_hook"
+        ]
+      }
+    },
+    "hanging_chain_hook": {
+      "tags": [],
+      "neighbors": {
+        "north": [
+          "hanging_chain"
+        ]
+      }
+    },
+    "castle_window": {
+      "tags": []
+    },
+    "stone_brick_wall": {
+      "tags": []
+    },
+    "wooden_shield": {
+      "tags": []
+    },
+    "red_potion": {
+      "tags": []
+    },
+    "pickaxe": {
+      "tags": []
+    },
+    "brown_bag": {
+      "tags": []
+    },
+    "blue_bag": {
+      "tags": []
+    }
+  }
+}

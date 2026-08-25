@@ -1,3 +1,9 @@
+# asset-unpacker
+
+Your job is to observe a 2d asset pack and, from the tilemap and individual tiles, rename the tiles semantically if they are not already named so and generate an allowed_neighbors.json like the example below:
+You may create groups for tile types that would have common connections, and individual tiles must be referenced by name. Tiles with no neighbors specified in a given direction will allow any tile in that direction.
+
+```json
 {
     "groups": {
         "grass": {
@@ -141,3 +147,4 @@
         }
     }
 }
+```
