@@ -14,16 +14,12 @@
         },
         "orange_roof_cap_north": {
             "neighbors": {
-                "east": ["#orange_roof_cap_north"],
-                "south": ["#orange_roof_cap_south", "orange_roof_cap_south_peaked"],
-                "west": ["#orange_roof_cap_north"]
+                "south": ["#orange_roof_cap_south"]
             }
         },
         "orange_roof_cap_south": {
             "neighbors": {
-                "north": ["#orange_roof_cap_north"],
-                "east": ["#orange_roof_cap_south"],
-                "west": ["#orange_roof_cap_south"]
+                "north": ["#orange_roof_cap_north"]
             }
         },
         "roof_cap_south": {
@@ -108,31 +104,60 @@
         "fence_vertical_align_center": {
             "tags": ["#fence_vertical"]
         },
-        "orange_roof_cap_north_1": {
-            "tags": ["#orange_roof_cap_north"]
+        "orange_roof_cap_north_west": {
+            "tags": ["#orange_roof_cap_north"],
+            "neighbors": {
+                "east": ["orange_roof_cap_north", "orange_roof_cap_north_east", "orange_roof_cap_north_chimney"],
+                "west": ["orange_roof_cap_north_chimney"]
+            }
         },
-        "orange_roof_cap_north_2": {
-            "tags": ["#orange_roof_cap_north"]
+        "orange_roof_cap_north": {
+            "tags": ["#orange_roof_cap_north"],
+            "neighbors": {
+                "east": ["orange_roof_cap_north", "orange_roof_cap_north_east", "orange_roof_cap_north_chimney"],
+                "west": ["orange_roof_cap_north_west", "orange_roof_cap_north", "orange_roof_cap_north_chimney"]
+            }
         },
-        "orange_roof_cap_north_3": {
-            "tags": ["#orange_roof_cap_north"]
+        "orange_roof_cap_north_east": {
+            "tags": ["#orange_roof_cap_north"],
+            "neighbors": {
+                "east": ["orange_roof_cap_north_chimney"],
+                "west": ["orange_roof_cap_north_west", "orange_roof_cap_north", "orange_roof_cap_north_chimney"]
+            }
         },
         "orange_roof_cap_north_chimney": {
-            "tags": ["#orange_roof_cap_north"]
+            "tags": ["#orange_roof_cap_north"],
+            "neighbors": {
+                "east": ["#orange_roof_cap_north"],
+                "west": ["#orange_roof_cap_north"]
+            }
         },
-        "orange_roof_cap_south_1": {
-            "tags": ["#orange_roof_cap_south", "#roof_cap_south"]
+        "orange_roof_cap_south_west": {
+            "tags": ["#orange_roof_cap_south", "#roof_cap_south"],
+            "neighbors": {
+                "east": ["orange_roof_cap_south", "orange_roof_cap_south_east", "orange_roof_cap_south_peaked"],
+                "west": ["orange_roof_cap_south_peaked"]
+            }
         },
-        "orange_roof_cap_south_2": {
-            "tags": ["#orange_roof_cap_south", "#roof_cap_south"]
+        "orange_roof_cap_south": {
+            "tags": ["#orange_roof_cap_south", "#roof_cap_south"],
+            "neighbors": {
+                "east": ["orange_roof_cap_south", "orange_roof_cap_south_east", "orange_roof_cap_south_peaked"],
+                "west": ["orange_roof_cap_south_west", "orange_roof_cap_south", "orange_roof_cap_south_peaked"]
+            }
         },
-        "orange_roof_cap_south_3": {
-            "tags": ["#orange_roof_cap_south", "#roof_cap_south"]
+        "orange_roof_cap_south_east": {
+            "tags": ["#orange_roof_cap_south", "#roof_cap_south"],
+            "neighbors": {
+                "east": ["orange_roof_cap_south_peaked"],
+                "west": ["orange_roof_cap_south_west", "orange_roof_cap_south", "orange_roof_cap_south_peaked"]
+            }
         },
         "orange_roof_cap_south_peaked": {
-            "tags": ["#roof_cap_south"],
+            "tags": ["#orange_roof_cap_south", "#roof_cap_south"],
             "neighbors": {
-                "north": ["#orange_roof_cap_north"]
+                "east": ["#orange_roof_cap_south"],
+                "west": ["#orange_roof_cap_south"]
             }
         },
         "stone_wall_cap_east": {
