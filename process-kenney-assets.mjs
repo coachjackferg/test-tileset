@@ -4,7 +4,7 @@ import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } fro
 import { basename, join } from "node:path";
 
 const root = new URL(".", import.meta.url).pathname;
-const outputRoot = join(root, "processed_kenney");
+const outputRoot = join(root, "processed");
 const farmCommit = "37c05fc";
 const townCommit = "a5df005";
 
@@ -101,12 +101,7 @@ function historicalPngNames(commit) {
     .map((path) => basename(path, ".png"));
 }
 
-function writePack({ packName, commit, names, assetNames = names, sourceNames, model }) {
-  const output = join(outputRoot, packName);
-  mkdirSync(output, { recursive: true });
-  validateModel(model, names);
-
-  const tiles = {};
+function writeTiles({ commit, names, assetNames = names }) {
   for (let index = 0; index < names.length; index += 1) {
     const name = names[index];
     const filename = `${name}.png`;
@@ -114,20 +109,8 @@ function writePack({ packName, commit, names, assetNames = names, sourceNames, m
     if (image.readUInt32BE(16) !== 16 || image.readUInt32BE(20) !== 16) {
       throw new Error(`${filename} is not a 16x16 PNG`);
     }
-    writeFileSync(join(output, filename), image);
-    tiles[sourceNames[index]] = filename;
+    writeFileSync(join(outputRoot, filename), image);
   }
-
-  const sourcePack = packName === "tiny-farm" ? "kenney_tiny-farm" : "kenney_tiny-town";
-  copyFileSync(join(root, sourcePack, "License.txt"), join(output, "License.txt"));
-  writeJson(join(output, "manifest.json"), {
-    source_pack: sourcePack,
-    tile_size: [16, 16],
-    columns: 12,
-    rows: 11,
-    tiles,
-  });
-  writeJson(join(output, "allowed_neighbors.json"), model);
 }
 
 function farmModel(history, names, assetNames) {
@@ -216,21 +199,45 @@ if (townNames.length !== 132 || townNames.some((name) => !name)) {
   throw new Error("Could not map all 132 town source tiles to semantic names");
 }
 
+const farmNeighbors = farmModel(farmHistory, farmNames, farmAssetNames);
+const townNeighbors = townModel(townHistory, townNames);
+const mergedNames = [...farmNames, ...townNames];
+if (new Set(mergedNames).size !== mergedNames.length) {
+  throw new Error("Farm and town semantic names collide in the merged namespace");
+}
+const mergedModel = {
+  groups: { ...farmNeighbors.groups, ...townNeighbors.groups },
+  tiles: { ...farmNeighbors.tiles, ...townNeighbors.tiles },
+};
+
+validateModel(mergedModel, mergedNames);
 mkdirSync(outputRoot, { recursive: true });
-writePack({
-  packName: "tiny-farm",
+writeTiles({
   commit: farmCommit,
   names: farmNames,
   assetNames: farmAssetNames,
-  sourceNames: farmSourceNames,
-  model: farmModel(farmHistory, farmNames, farmAssetNames),
 });
-writePack({
-  packName: "tiny-town",
+writeTiles({
   commit: townCommit,
   names: townNames,
-  sourceNames: townSourceNames,
-  model: townModel(townHistory, townNames),
 });
+copyFileSync(join(root, "kenney_tiny-farm", "License.txt"), join(outputRoot, "License-tiny-farm.txt"));
+copyFileSync(join(root, "kenney_tiny-town", "License.txt"), join(outputRoot, "License-tiny-town.txt"));
+writeJson(join(outputRoot, "manifest.json"), {
+  tile_size: [16, 16],
+  packs: {
+    "kenney_tiny-farm": {
+      columns: 12,
+      rows: 11,
+      tiles: Object.fromEntries(farmSourceNames.map((source, index) => [source, `${farmNames[index]}.png`])),
+    },
+    "kenney_tiny-town": {
+      columns: 12,
+      rows: 11,
+      tiles: Object.fromEntries(townSourceNames.map((source, index) => [source, `${townNames[index]}.png`])),
+    },
+  },
+});
+writeJson(join(outputRoot, "allowed_neighbors.json"), mergedModel);
 
 console.log(`Processed ${farmNames.length + townNames.length} tiles into ${outputRoot}`);
