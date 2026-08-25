@@ -1,0 +1,60 @@
+{
+    "groups": {
+        "fence_horizontal": {
+            "east": ["#fence_horizontal", "fence_cap_east", "fence_cap_north_east", "fence_cap_south_east"],
+            "west": ["#fence_horizontal", "fence_cap_west", "fence_cap_north_west", "fence_cap_south_west"]
+        },
+        "fence_vertical": {
+            "north": ["#fence_vertical", "fence_cap_north", "fence_cap_north_east", "fence_cap_north_west"],
+            "south": ["#fence_vertical", "fence_cap_south", "fence_cap_south_east", "fence_cap_south_west"]
+        }
+    },
+    "tiles": {
+        "fence_horizontal": {
+            "tags": ["#fence_horizontal"]
+        },
+        "fence_vertical": {
+            "tags": ["#fence_vertical"]
+        },
+        "fence_slat_horizontal": {
+            "tags": ["#fence_horizontal"]
+        },
+        "fence_cap_east": {
+            "tags": [],
+            "west": ["#fence_horizontal", "fence_cap_west", "fence_cap_north_west", "fence_cap_south_west"]
+        },
+        "fence_cap_north_east": {
+            "tags": [],
+            "west": ["#fence_horizontal", "fence_cap_west", "fence_cap_north_west", "fence_cap_south_west"],
+            "south": ["#fence_vertical", "fence_cap_south", "fence_cap_south_east", "fence_cap_south_west"]
+        },
+        "fence_cap_north": {
+            "tags": [],
+            "south": ["#fence_vertical", "fence_cap_south", "fence_cap_south_east", "fence_cap_south_west"]
+        },
+        "fence_cap_south_east": {
+            "tags": [],
+            "north": ["#fence_vertical", "fence_cap_north", "fence_cap_north_east", "fence_cap_north_west"],
+            "west": ["#fence_horizontal", "fence_cap_west", "fence_cap_north_west", "fence_cap_south_west"]
+        },
+        "fence_cap_south_west": {
+            "tags": [],
+            "north": ["#fence_vertical", "fence_cap_north", "fence_cap_north_east", "fence_cap_north_west"],
+            "east": ["#fence_horizontal", "fence_cap_east", "fence_cap_north_east", "fence_cap_south_east"]
+        },
+        "fence_cap_south": {
+            "tags": [],
+            "north": ["#fence_vertical", "fence_cap_north", "fence_cap_north_east", "fence_cap_north_west"]
+        },
+        "fence_cap_west": {
+            "tags": [],
+            "east": ["#fence_horizontal", "fence_cap_east", "fence_cap_north_east", "fence_cap_south_east"]
+        },
+        "fence_gap_horizontal": {
+            "tags": ["#fence_horizontal"]
+        },
+        "fence_vertical_align_center": {
+            "tags": ["#fence_vertical"]
+        }
+    }
+}
