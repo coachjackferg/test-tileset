@@ -1,150 +1,41 @@
-# asset-unpacker
+# 2D tileset neighbor analysis
 
-Your job is to observe a 2d asset pack and, from the tilemap and individual tiles, rename the tiles semantically if they are not already named so and generate an allowed_neighbors.json like the example below:
-You may create groups for tile types that would have common connections, and individual tiles must be referenced by name. Tiles with no neighbors specified in a given direction will allow any tile in that direction. You can handle this a few tiles at a time. It may be helpful to order the tiles by their average color and find where they are in the tileset so you process tiles that are more likely to be related closer to each other.
+Produce `allowed_neighbors.json` for grid-based 2D tilesets. The file expresses
+which tile may occupy each cardinally adjacent cell. It is a constraint model,
+not a catalogue of every visual relationship in the pack.
 
-```json
-{
-    "groups": {
-        "grass": {
-            "neighbors": {
-                "north": ["#grass", "dirt_cap_south", "dirt_cap_south_west", "dirt_cap_south_east"],
-                "east": ["#grass", "dirt_cap_west", "dirt_cap_south_west", "dirt_cap_north_west"],
-                "south": ["#grass", "dirt_cap_north", "dirt_cap_north_west", "dirt_cap_north_east"],
-                "west": ["#grass", "dirt_cap_east", "dirt_cap_south_east", "dirt_cap_north_east"]
-            }
-        }
-    },
-    "tiles": {
-        "dirt": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt", "dirt_cap_north", "dirt_junction_north_and_east", "dirt_junction_north_and_west"],
-                "east": ["dirt", "dirt_cap_east", "dirt_junction_north_and_east", "dirt_junction_south_and_east"],
-                "south": ["dirt", "dirt_cap_south", "dirt_junction_south_and_east", "dirt_junction_south_and_west"],
-                "west": ["dirt", "dirt_cap_west", "dirt_junction_south_and_west", "dirt_junction_north_and_west"]
-            }
-        },
-        "dirt_cap_north": {
-            "tags": [],
-            "neighbors": {
-                "north": ["#grass", "dirt_cap_south", "dirt_cap_south_east", "dirt_cap_south_west"],
-                "east": ["dirt_cap_north", "dirt_cap_north_east", "dirt_junction_north_and_west"],
-                "south": ["dirt", "dirt_cap_south", "dirt_junction_south_and_east", "dirt_junction_south_and_west"],
-                "west": ["dirt_cap_north", "dirt_cap_north_west", "dirt_junction_north_and_east"]
-            }
-        },
-        "dirt_cap_east": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_east", "dirt_cap_north_east", "dirt_junction_south_and_east"],
-                "east": ["#grass", "dirt_cap_west", "dirt_cap_north_west", "dirt_cap_south_west"],
-                "south": ["dirt_cap_east", "dirt_cap_south_east", "dirt_junction_north_and_east"],
-                "west": ["dirt", "dirt_cap_west", "dirt_junction_north_and_west", "dirt_junction_south_and_west"]
-            }
-        },
-        "dirt_cap_south": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt", "dirt_cap_north", "dirt_junction_north_and_east", "dirt_junction_north_and_west"],
-                "east": ["dirt_cap_south", "dirt_cap_south_east", "dirt_junction_south_and_west"],
-                "south": ["#grass", "dirt_cap_north", "dirt_cap_north_east", "dirt_cap_north_west"],
-                "west": ["dirt_cap_south", "dirt_cap_south_west", "dirt_junction_south_and_east"]
-            }
-        },
-        "dirt_cap_west": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_west", "dirt_cap_north_west", "dirt_junction_south_and_west"],
-                "east": ["dirt", "dirt_cap_east", "dirt_junction_north_and_east", "dirt_junction_south_and_east"],
-                "south": ["dirt_cap_west", "dirt_cap_south_west", "dirt_junction_north_and_west"],
-                "west": ["#grass", "dirt_cap_east", "dirt_cap_north_east", "dirt_cap_south_east"]
-            }
-        },
-        "dirt_cap_north_east": {
-            "tags": [],
-            "neighbors": {
-                "north": ["#grass", "dirt_cap_south", "dirt_cap_south_east", "dirt_cap_south_west"],
-                "east": ["#grass", "dirt_cap_west", "dirt_cap_north_west", "dirt_cap_south_west"],
-                "south": ["dirt_cap_east", "dirt_cap_south_east", "dirt_junction_north_and_east"],
-                "west": ["dirt_cap_north", "dirt_cap_north_west", "dirt_junction_north_and_east"]
-            }
-        },
-        "dirt_cap_south_east": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_east", "dirt_cap_north_east", "dirt_junction_south_and_east"],
-                "east": ["#grass", "dirt_cap_west", "dirt_cap_north_west", "dirt_cap_south_west"],
-                "south": ["#grass", "dirt_cap_north", "dirt_cap_north_east", "dirt_cap_north_west"],
-                "west": ["dirt_cap_south", "dirt_cap_south_west", "dirt_junction_south_and_east"]
-            }
-        },
-        "dirt_cap_south_west": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_west", "dirt_cap_north_west", "dirt_junction_south_and_west"],
-                "east": ["dirt_cap_south", "dirt_cap_south_east", "dirt_junction_south_and_west"],
-                "south": ["#grass", "dirt_cap_north", "dirt_cap_north_east", "dirt_cap_north_west"],
-                "west": ["#grass", "dirt_cap_east", "dirt_cap_north_east", "dirt_cap_south_east"]
-            }
-        },
-        "dirt_cap_north_west": {
-            "tags": [],
-            "neighbors": {
-                "north": ["#grass", "dirt_cap_south", "dirt_cap_south_east", "dirt_cap_south_west"],
-                "east": ["dirt_cap_north", "dirt_cap_north_east", "dirt_junction_north_and_west"],
-                "south": ["dirt_cap_west", "dirt_cap_south_west", "dirt_junction_north_and_west"],
-                "west": ["#grass", "dirt_cap_east", "dirt_cap_north_east", "dirt_cap_south_east"]
-            }
-        },
-        "dirt_junction_north_and_east": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_east", "dirt_cap_north_east", "dirt_junction_south_and_east"],
-                "east": ["dirt_cap_north", "dirt_cap_north_east", "dirt_junction_north_and_west"],
-                "south": ["dirt", "dirt_cap_south", "dirt_junction_south_and_east", "dirt_junction_south_and_west"],
-                "west": ["dirt", "dirt_cap_west", "dirt_junction_south_and_west", "dirt_junction_north_and_west"]
-            }
-        },
-        "dirt_junction_south_and_east": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt", "dirt_cap_north", "dirt_junction_north_and_east", "dirt_junction_north_and_west"],
-                "east": ["dirt_cap_south", "dirt_cap_south_east", "dirt_junction_south_and_west"],
-                "south": ["dirt_cap_east", "dirt_cap_south_east", "dirt_junction_north_and_east"],
-                "west": ["dirt", "dirt_cap_west", "dirt_junction_south_and_west", "dirt_junction_north_and_west"]
-            }
-        },
-        "dirt_junction_south_and_west": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt", "dirt_cap_north", "dirt_junction_north_and_east", "dirt_junction_north_and_west"],
-                "east": ["dirt", "dirt_cap_east", "dirt_junction_north_and_east", "dirt_junction_south_and_east"],
-                "south": ["dirt_cap_west", "dirt_cap_south_west", "dirt_junction_north_and_west"],
-                "west": ["dirt_cap_south", "dirt_cap_south_west", "dirt_junction_south_and_east"]
-            }
-        },
-        "dirt_junction_north_and_west": {
-            "tags": [],
-            "neighbors": {
-                "north": ["dirt_cap_west", "dirt_cap_north_west", "dirt_junction_south_and_west"],
-                "east": ["dirt", "dirt_cap_east", "dirt_junction_north_and_east", "dirt_junction_south_and_east"],
-                "south": ["dirt", "dirt_cap_south", "dirt_junction_south_and_east", "dirt_junction_south_and_west"],
-                "west": ["dirt_cap_north", "dirt_cap_north_west", "dirt_junction_north_and_east"]
-            }
-        },
-        "grass": {
-            "tags": ["#grass"]
-        },
-        "grass_with_flowers": {
-            "tags": ["#grass"]
-        },
-        "grass_with_plants": {
-            "tags": ["#grass"]
-        },
-        "grass_with_stones": {
-            "tags": ["#grass"]
-        }
-    }
-}
-```
+Treat the supplied asset pack as the authority. Inspect the complete tilesheet,
+individual tiles, and any supplied map or naming metadata before adding a rule.
+Use the sheet's row and column layout to identify adjacent variants and use
+individual tiles for detail. Do not infer directional constraints from filename
+similarity alone.
+
+Preserve meaningful source names. Give unnamed tiles stable, lowercase,
+underscore-separated semantic names only when their visual role is clear. Do
+not rename source assets or create aliases unless the task explicitly requires
+it. If a tile's role is uncertain, keep its identifier and omit speculative
+constraints.
+
+Use `groups` only for visually interchangeable tile families that share the
+same directional behavior, such as a terrain fill and its decorative variants.
+Group membership is expressed by a tile tag such as `#grass`; group rules refer
+to that tag. Keep a tile-specific rule when a member has a distinct edge,
+corner, continuation, or multi-cell relationship.
+
+Each direction is a hard allow-list. Omit a direction when any adjacent tile is
+permitted; never use an empty list to mean unrestricted. Omit `neighbors`
+entirely when all directions are unrestricted. Decorative, inventory, and
+standalone tiles normally need tags only or no entry, not invented adjacency
+rules.
+
+For every explicit relation, make the opposite relation explicit as well:
+`north`/`south` and `east`/`west`. A reference to a group is reciprocal when
+every tagged target is valid in the opposite direction. Restrict multi-tile
+objects only where the observed pieces must touch, for example a top tile's
+`south` neighbor and its bottom tile's `north` neighbor.
+
+Before finishing, load the JSON and verify that every tile and `#group`
+reference resolves, every direction is cardinal, every list has unique string
+entries, and every explicit relationship has an opposite explicit allowance.
+Follow the `tileset-neighbors` skill whenever analyzing a pack or validating an
+output file.
