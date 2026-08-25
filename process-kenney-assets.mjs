@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 
 const root = new URL(".", import.meta.url).pathname;
@@ -167,18 +167,31 @@ function townModel(history, names) {
 const farmHistory = gitJson(farmCommit, "processed/allowed_neighbors.json");
 const farmAssetNames = Object.keys(farmHistory.tiles);
 if (farmAssetNames.length !== 132) throw new Error(`Expected 132 farm tiles, found ${farmAssetNames.length}`);
-const farmSourceDirectory = join(root, "kenney_tiny-farm", "Tiles");
-const farmSourceByHash = new Map(
-  readdirSync(farmSourceDirectory)
-    .filter((filename) => filename.endsWith(".png"))
-    .map((filename) => [hash(readFileSync(join(farmSourceDirectory, filename))), basename(filename, ".png")]),
+// Tiny Farm ships only a packed sheet. Reuse the committed manifest's source
+// coordinates and canonical names instead of requiring a non-existent Tiles/
+// directory.
+const farmManifest = gitJson("HEAD", "processed/manifest.json").packs["kenney_tiny-farm"];
+const currentPngNames = historicalPngNames("HEAD");
+const currentNameByHash = new Map(
+  currentPngNames.map((name) => [hash(gitFile("HEAD", `processed/${name}.png`)), name]),
 );
-const farmSourceNames = [];
-const farmNames = farmAssetNames.map((assetName, index) => {
-  const sourceName = farmSourceByHash.get(hash(gitFile(farmCommit, `processed/${assetName}.png`)));
-  farmSourceNames.push(sourceName ?? tileId(index));
-  return sourceName && !sourceName.startsWith("tile_") ? sourceName : assetName;
+const farmSourceByName = new Map(
+  Object.entries(farmManifest.tiles).map(([sourceName, filename]) => [basename(filename, ".png"), sourceName]),
+);
+const farmNames = farmAssetNames.map((assetName) => currentNameByHash.get(
+  hash(gitFile(farmCommit, `processed/${assetName}.png`)),
+));
+const farmSourceNames = farmNames.map((name) => farmSourceByName.get(name));
+if (farmNames.some((name) => !name)) {
+  throw new Error("Could not map all 132 farm tiles to canonical names");
+}
+const farmNamesBySource = farmNames.map((name, index) => {
+  const sourceName = farmSourceNames[index];
+  return sourceName && !sourceName.startsWith("tile_") ? sourceName : farmAssetNames[index];
 });
+if (farmSourceNames.some((name) => !name)) {
+  throw new Error("Could not map all 132 farm tiles to source coordinates");
+}
 
 const townHistory = gitJson(townCommit, "processed/allowed_neighbors.json");
 const historicalNames = historicalPngNames(townCommit);
@@ -199,9 +212,25 @@ if (townNames.length !== 132 || townNames.some((name) => !name)) {
   throw new Error("Could not map all 132 town source tiles to semantic names");
 }
 
-const farmNeighbors = farmModel(farmHistory, farmNames, farmAssetNames);
+const farmNeighbors = farmModel(farmHistory, farmNamesBySource, farmAssetNames);
 const townNeighbors = townModel(townHistory, townNames);
-const mergedNames = [...farmNames, ...townNames];
+const farmSoilPatches = ["soil_single", "fertile_soil_single"];
+
+// Both farm soil patches expose grass on every edge. Make that profile shared
+// with Tiny Town's grass so terrain can cross the source-pack boundary.
+for (const name of farmSoilPatches) {
+  if (!farmNeighbors.tiles[name]) throw new Error(`Missing farm soil patch ${name}`);
+  farmNeighbors.tiles[name].neighbors = Object.fromEntries(
+    ["north", "east", "south", "west"].map((direction) => [direction, ["#grass"]]),
+  );
+}
+for (const direction of ["north", "east", "south", "west"]) {
+  townNeighbors.groups.grass.neighbors[direction] = [
+    ...townNeighbors.groups.grass.neighbors[direction],
+    ...farmSoilPatches,
+  ];
+}
+const mergedNames = [...farmNamesBySource, ...townNames];
 if (new Set(mergedNames).size !== mergedNames.length) {
   throw new Error("Farm and town semantic names collide in the merged namespace");
 }
@@ -212,9 +241,13 @@ const mergedModel = {
 
 validateModel(mergedModel, mergedNames);
 mkdirSync(outputRoot, { recursive: true });
+const outputTileNames = new Set([...farmNamesBySource, ...townNames].map((name) => `${name}.png`));
+for (const filename of readdirSync(outputRoot)) {
+  if (filename.endsWith(".png") && !outputTileNames.has(filename)) unlinkSync(join(outputRoot, filename));
+}
 writeTiles({
   commit: farmCommit,
-  names: farmNames,
+  names: farmNamesBySource,
   assetNames: farmAssetNames,
 });
 writeTiles({
@@ -229,7 +262,7 @@ writeJson(join(outputRoot, "manifest.json"), {
     "kenney_tiny-farm": {
       columns: 12,
       rows: 11,
-      tiles: Object.fromEntries(farmSourceNames.map((source, index) => [source, `${farmNames[index]}.png`])),
+      tiles: Object.fromEntries(farmSourceNames.map((source, index) => [source, `${farmNamesBySource[index]}.png`])),
     },
     "kenney_tiny-town": {
       columns: 12,
@@ -240,4 +273,4 @@ writeJson(join(outputRoot, "manifest.json"), {
 });
 writeJson(join(outputRoot, "allowed_neighbors.json"), mergedModel);
 
-console.log(`Processed ${farmNames.length + townNames.length} tiles into ${outputRoot}`);
+console.log(`Processed ${farmNamesBySource.length + townNames.length} tiles into ${outputRoot}`);

@@ -14,13 +14,11 @@
       "tags": ["#grass"]
     },
     "tree_top": {
-      "tags": ["#object"],
       "neighbors": {
         "south": ["tree_bottom"]
       }
     },
     "tree_bottom": {
-      "tags": ["#object"],
       "neighbors": {
         "north": ["tree_top"]
       }
@@ -29,22 +27,27 @@
 }
 ```
 
-The root object contains `groups` and `tiles` objects. A group name is referred
-to as `#<name>`; a tile identifier is referred to without `#`.
+The root object contains `groups` and `tiles` objects. A group is referred to
+as `#<name>`; a tile identifier has no `#`. A group must have at least one
+member tile and a non-empty `neighbors` object. Use no group when it is only a
+label and has no shared directional rule.
 
-A group has an optional `neighbors` object. A tile has an optional `tags` array
-and optional `neighbors` object. `tags` only contains references to declared
-groups. A `neighbors` object maps one or more of `north`, `east`, `south`, and
-`west` to non-empty arrays of tile IDs or group references.
+A group has a `neighbors` object. A tile has an optional `tags` array and
+optional `neighbors` object. `tags` contains only declared group references.
+Each `neighbors` object maps one or more of `north`, `east`, `south`, and
+`west` to non-empty, duplicate-free arrays of tile IDs or group references.
 
-An omitted `neighbors` object, or an omitted direction within it, means the
-tile or group is unrestricted in that direction. An empty `neighbors` object
-is equivalent but should not be emitted. An empty direction list is invalid:
-it does not express an unrestricted edge and produces an unusable constraint.
+To resolve a tile's direction, use its own direction if present. Otherwise,
+union that direction from every group named in `tags`. If neither provides the
+doorways unambiguous.
 
-Every explicit relation must be reciprocal. If `a.neighbors.east` contains
-`b`, `b.neighbors.west` must contain `a`; use `north`/`south` analogously. For
-group targets, check the relation for every tile carrying the target group tag.
-If a target is deliberately exempt because the opposite direction is globally
-unrestricted, do not emit the one-sided rule; unrestricted behavior cannot
-encode a hard reciprocal guarantee.
+Every effective explicit relation must be reciprocal. If tile `a` permits tile
+`b` to its east, `b` must effectively permit `a` to its west; use
+`north`/`south` analogously. Expand group references to all tagged member tiles
+when checking this condition. A one-sided relation is invalid even when the
+opposite side would otherwise be unrestricted.
+
+Do not emit empty `neighbors` objects or empty direction arrays. Omitted
+directions deliberately mean unrestricted placement. Restrict all structural
+tile sides using profile evidence; omission is reserved for genuinely free
+placement, typically overlays and standalone props.

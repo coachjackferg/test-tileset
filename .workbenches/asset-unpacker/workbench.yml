@@ -1,15 +1,16 @@
 spec: 0
-version: 0.2.0
+version: 0.3.0
 name: asset-unpacker
 description: Analyze 2D tilesets and produce conservative directional-neighbor JSON.
 runner: "opencode"
-model: "openrouter/openai/gpt-5.6-sol"
+model: "openrouter/openai/gpt-5.6-terra"
 instructions: ./instructions.md
 skills:
   - ./skills/tileset-neighbors
 tools:
   - python3
   - jq
+  - ffmpeg
 mcps: []
 env: {}
 runtime: local

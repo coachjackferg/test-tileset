@@ -1,41 +1,46 @@
 # 2D tileset neighbor analysis
 
-Produce `allowed_neighbors.json` for grid-based 2D tilesets. The file expresses
-which tile may occupy each cardinally adjacent cell. It is a constraint model,
-not a catalogue of every visual relationship in the pack.
+Produce `allowed_neighbors.json` for grid-based 2D tilesets. It is a strict
+cell-to-cell compatibility model for terrain, architecture, paths, and
+multi-cell sprites. It must not become a loose catalogue of similarly named
+assets.
 
-Treat the supplied asset pack as the authority. Inspect the complete tilesheet,
-individual tiles, and any supplied map or naming metadata before adding a rule.
-Use the sheet's row and column layout to identify adjacent variants and use
-individual tiles for detail. Do not infer directional constraints from filename
-similarity alone.
+Treat the supplied pack as the authority. Inspect the complete tilesheet before
+individual tiles, and use supplied tile dimensions, padding, layout, maps, and
+existing names as evidence. Use image crops or contact sheets when a sheet is
+too small to inspect at native resolution. Do not infer a relation from naming
+or palette similarity alone.
 
-Preserve meaningful source names. Give unnamed tiles stable, lowercase,
-underscore-separated semantic names only when their visual role is clear. Do
-not rename source assets or create aliases unless the task explicitly requires
-it. If a tile's role is uncertain, keep its identifier and omit speculative
-constraints.
+For every tile that participates in level construction, first record a four
+side profile: the material or shape exposed at its north, east, south, and west
+cell boundary. Mark each side as a continuation of a named surface, an exposed
+edge into a named surface, a required object fragment, or unrestricted. Compare
+opposing profiles to derive valid neighbors. The center art is secondary:
+continuity at the shared boundary decides compatibility.
 
-Use `groups` only for visually interchangeable tile families that share the
-same directional behavior, such as a terrain fill and its decorative variants.
-Group membership is expressed by a tile tag such as `#grass`; group rules refer
-to that tag. Keep a tile-specific rule when a member has a distinct edge,
-corner, continuation, or multi-cell relationship.
+Classify tiles before writing rules. Structural tiles include terrain fills,
+transitions, corners, paths, walls, roofs, and multi-cell fragments; they need
+complete, evidence-backed directional coverage. Decorations, inventory icons,
+and freely placeable overlays are non-structural and must not receive invented
+constraints. State which families were classified as non-structural in the run
+summary.
 
-Each direction is a hard allow-list. Omit a direction when any adjacent tile is
-permitted; never use an empty list to mean unrestricted. Omit `neighbors`
-entirely when all directions are unrestricted. Decorative, inventory, and
-standalone tiles normally need tags only or no entry, not invented adjacency
+Use groups only when every tagged tile has the same four side profiles. A group
+is a rule abstraction, not a taxonomy: never create an empty group merely to
+label assets. Give a variant a tile-specific direction whenever it differs from
+the group's profile. Preserve meaningful source names; only semantically rename
+unnamed tiles when their role is visually clear.
+
+Each explicit direction is a hard allow-list. Omit a direction only when it is
+truly unrestricted; never use an empty list to mean unrestricted. A tile
+inherits the union of its groups' rule for a direction only when the tile has no
+rule for that direction. A tile-specific direction replaces inherited group
+rules. Follow the output contract for the exact precedence and reciprocity
 rules.
 
-For every explicit relation, make the opposite relation explicit as well:
-`north`/`south` and `east`/`west`. A reference to a group is reciprocal when
-every tagged target is valid in the opposite direction. Restrict multi-tile
-objects only where the observed pieces must touch, for example a top tile's
-`south` neighbor and its bottom tile's `north` neighbor.
-
-Before finishing, load the JSON and verify that every tile and `#group`
-reference resolves, every direction is cardinal, every list has unique string
-entries, and every explicit relationship has an opposite explicit allowance.
-Follow the `tileset-neighbors` skill whenever analyzing a pack or validating an
-output file.
+Before finishing, run the packaged validator against the generated JSON. It
+checks syntax, references, group membership, effective-direction reciprocity,
+and redundant empty objects. Resolve every validator failure. Then review each
+structural family against its side profiles: fills must connect to all valid
+fills and transitions; caps, corners, and junctions must expose only compatible
+materials; and each multi-cell fragment must require its observed companion.
